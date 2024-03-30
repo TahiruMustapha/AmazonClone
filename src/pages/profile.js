@@ -139,4 +139,4 @@ export default function ProfileScreen() {
   );
 }
 
-ProfileScreen.auth = false;
+ProfileScreen.auth = true;

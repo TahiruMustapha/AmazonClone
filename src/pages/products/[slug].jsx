@@ -30,6 +30,20 @@ export default function productScreen(props) {
       return toast.error("Sorry! product is out of stock");
     }
   };
+
+
+   async function getServerSideProps(context){
+    const {params} = context;
+    const {slug} = params;
+    await db.connect();
+    const product = await Product.findOne({slug}).lean();
+    await db.disconnect();
+    return{
+     props: {
+       product:product ? db.convertDocToObj(product): null,
+     },
+    };
+}
   return (
     <Layout title={product.name}>
       <div className="px-2">
@@ -76,15 +90,15 @@ export default function productScreen(props) {
   );
 }
 
-export async function getServerSideProps(context){
-     const {params} = context;
-     const {slug} = params;
-     await db.connect();
-     const product = await Product.findOne({slug}).lean();
-     await db.disconnect();
-     return{
-      props: {
-        product:product ? db.convertDocToObj(product): null,
-      },
-     };
-}
+// export async function getServerSideProps(context){
+//      const {params} = context;
+//      const {slug} = params;
+//      await db.connect();
+//      const product = await Product.findOne({slug}).lean();
+//      await db.disconnect();
+//      return{
+//       props: {
+//         product:product ? db.convertDocToObj(product): null,
+//       },
+//      };
+// }

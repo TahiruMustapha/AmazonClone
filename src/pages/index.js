@@ -20,9 +20,19 @@ export default function Home({ products }) {
 
     toast.success("Product added to cart");
     if (data.countInStock < quantity) {
-    return  toast.error("Sory! Product is out of stock..");
+      return toast.error("Sory! Product is out of stock..");
     }
   };
+
+   async function getServerSideProps() {
+    await db.connect();
+    const products = await Product.find().lean();
+    return {
+      props: {
+        products: products.map(db.convertDocToObj),
+      },
+    };
+  }
   return (
     <Layout title={"Home Page"}>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
@@ -37,12 +47,12 @@ export default function Home({ products }) {
     </Layout>
   );
 }
-export async function getServerSideProps() {
-  await db.connect();
-  const products = await Product.find().lean();
-  return {
-    props: {
-      products: products.map(db.convertDocToObj),
-    },
-  };
-}
+// export async function getServerSideProps() {
+//   await db.connect();
+//   const products = await Product.find().lean();
+//   return {
+//     props: {
+//       products: products.map(db.convertDocToObj),
+//     },
+//   };
+// }
