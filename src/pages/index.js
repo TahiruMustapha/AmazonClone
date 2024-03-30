@@ -8,7 +8,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 // import { trace } from "next/dist/trace";
 // import type   GetServerSideProps  from 'next'
-export default function Home({ products }) {
+export default function Home({products}) {
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
   const addToCartHandler = async (product) => {
@@ -24,15 +24,15 @@ export default function Home({ products }) {
     }
   };
 
-   async function getServerSideProps() {
-    await db.connect();
-    const products = await Product.find().lean();
-    return {
-      props: {
-        products: products.map(db.convertDocToObj),
-      },
-    };
-  }
+  //  async function getServerSideProps() {
+  //   await db.connect();
+  //   const products = await Product.find().lean();
+  //   return {
+  //     props: {
+  //       products: products.map(db.convertDocToObj),
+  //     },
+  //   };
+  // }
   return (
     <Layout title={"Home Page"}>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
@@ -47,12 +47,12 @@ export default function Home({ products }) {
     </Layout>
   );
 }
-// export async function getServerSideProps() {
-//   await db.connect();
-//   const products = await Product.find().lean();
-//   return {
-//     props: {
-//       products: products.map(db.convertDocToObj),
-//     },
-//   };
-// }
+export async function getServerSideProps() {
+  await db.connect();
+  const products = await Product.find().lean();
+  return {
+    props: {
+      products: products.map(db.convertDocToObj),
+    },
+  };
+}
