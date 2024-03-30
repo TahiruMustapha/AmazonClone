@@ -142,28 +142,28 @@ export default function PlaceOrderScreen() {
               <h2 className="mb-2 text-lg">Order Summary</h2>
               <div>
                 <li>
-                  <div className="mb-2 flex justify-between">
+                  <p className="mb-2 flex justify-between">
                     <div>Items</div>
                     <div>${itemsPrice}</div>
-                  </div>
+                  </p>
                 </li>
                 <li>
-                  <div className="mb-2 flex justify-between">
+                  <p className="mb-2 flex justify-between">
                     <div>Tax</div>
                     <div>${taxPrice}</div>
-                  </div>
+                  </p>
                 </li>
                 <li>
-                  <div className="mb-2 flex justify-between">
+                  <p className="mb-2 flex justify-between">
                     <div>Shipping</div>
                     <div>${shippingPrice}</div>
-                  </div>
+                  </p>
                 </li>
                 <li>
-                  <div className="mb-2 flex justify-between">
+                  <p className="mb-2 flex justify-between">
                     <div>Total</div>
                     <div>${totalPrice}</div>
-                  </div>
+                  </p>
                 </li>
                 <li>
                   <button

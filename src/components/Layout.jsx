@@ -8,7 +8,7 @@ import { Menu } from "@headlessui/react";
 import "react-toastify/dist/ReactToastify.css";
 import { signOut, useSession } from "next-auth/react";
 import DropdownLink from "../components/DropdownLink";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 const Layout = ({ title, children }) => {
   const { status, data: session } = useSession();
   const { state, dispatch } = useContext(Store);
@@ -18,11 +18,11 @@ const Layout = ({ title, children }) => {
     setcartItemCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
   }, [cart.cartItems]);
 
-  const logOutClickHandler = ()=>{
-    Cookies.remove('cart');
-    dispatch({type: 'CART_RESET'});
-    signOut({ callbackUrl: '/Login'});
-  }
+  const logOutClickHandler = () => {
+    Cookies.remove("cart");
+    dispatch({ type: "CART_RESET" });
+    signOut({ callbackUrl: "/Login" });
+  };
   return (
     <>
       <Head>
@@ -34,10 +34,8 @@ const Layout = ({ title, children }) => {
         <div className="flex min-h-screen flex-col justify-between">
           <header>
             <nav className="flex h-12 items-center px-4 justify-between shadow-md ">
-              <Link href="/">
-                <Link href={"/"} className="text-lg font-bold">
-                  amazona
-                </Link>
+              <Link href="/" className="text-lg font-bold">
+                amazona
               </Link>
               <div>
                 <Link className=" p-2 mr-2 relative" href={"/Cart"}>
@@ -58,17 +56,14 @@ const Layout = ({ title, children }) => {
                     </Menu.Button>
                     <Menu.Items className=" absolute right-0 w-56 bg-gray-100 origin-top-right shadow-lg">
                       <Menu.Item>
-                        <DropdownLink
-                          className="dropdown-link"
-                          href = "/profile"
-                        >
+                        <DropdownLink className="dropdown-link" href="/profile">
                           Profile
                         </DropdownLink>
                       </Menu.Item>
                       <Menu.Item>
                         <DropdownLink
                           className="dropdown-link"
-                          href = "/order-history"
+                          href="/order-history"
                         >
                           Order History
                         </DropdownLink>
@@ -76,8 +71,8 @@ const Layout = ({ title, children }) => {
                       <Menu.Item>
                         <DropdownLink
                           className="dropdown-link"
-                          href = "#"
-                          onClick = {logOutClickHandler}
+                          href="#"
+                          onClick={logOutClickHandler}
                         >
                           Logout
                         </DropdownLink>
@@ -85,10 +80,8 @@ const Layout = ({ title, children }) => {
                     </Menu.Items>
                   </Menu>
                 ) : (
-                  <Link href={"/Login"}>
-                    <Link className=" p-2" href={"/Login"}>
-                      Login
-                    </Link>
+                  <Link className=" p-2" href={"/Login"}>
+                    Login
                   </Link>
                 )}
               </div>

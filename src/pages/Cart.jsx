@@ -52,17 +52,18 @@ function CartScreen() {
                 {cartItems.map((item) => (
                   <tr key={item.slug} className="border-b">
                     <td>
-                      <Link href={`/products/${item.slug}`}>
-                        <Link href={"#"} className="flex items-center">
-                          <Image
-                            src={item.image}
-                            alt={item.name}
-                            width={50}
-                            height={50}
-                          ></Image>
-                          &nbsp;
-                          {item.name}
-                        </Link>
+                      <Link
+                        className="flex items-center"
+                        href={`/products/${item.slug}`}
+                      >
+                        <Image
+                          src={item.image}
+                          alt={item.name}
+                          width={50}
+                          height={50}
+                        ></Image>
+                        &nbsp;
+                        {item.name}
                       </Link>
                     </td>
                     <td className="p-5 text-right">
@@ -93,10 +94,10 @@ function CartScreen() {
           <div className="card p-5 h-fit ">
             <ul>
               <li>
-                <div className="pb-2 text-xl  ">
+                <p className="pb-2 text-xl  ">
                   Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}) : $
                   {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
-                </div>
+                </p>
               </li>
               <li>
                 <button
